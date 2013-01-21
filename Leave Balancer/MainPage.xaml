@@ -28,8 +28,8 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
-            <TextBlock Text="Annual Leave" Margin="9,15,-9,-15" /><TextBox Height="72" HorizontalAlignment="Left" Margin="40,37,0,0" Name="CurrentAnnualBalance" Text="TextBox" VerticalAlignment="Top" Width="300" />
-            <TextBlock Text="Sick Leave" Margin="12,137,-12,-137" /><TextBox Height="72" HorizontalAlignment="Left" Margin="40,159,0,0" Name="CurrentSickBalance" Text="TextBox" VerticalAlignment="Top" Width="300" />
+            <TextBlock Text="Annual Leave" Margin="9,15,-9,-15" /><TextBox Height="72" HorizontalAlignment="Left" Margin="40,37,0,0" Name="CurrentAnnualBalance" VerticalAlignment="Top" Width="300" />
+            <TextBlock Text="Sick Leave" Margin="12,137,-12,-137" /><TextBox Height="72" HorizontalAlignment="Left" Margin="40,159,0,0" Name="CurrentSickBalance" VerticalAlignment="Top" Width="300" />
             <TextBlock Height="63" HorizontalAlignment="Left" Margin="55,420,0,0" Name="CurrentPayPeriod" Text="TextBlock" VerticalAlignment="Top" Width="367" />
         </Grid>
     </Grid>
@@ -38,17 +38,17 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar_button2.png" 
+                IconUri="/Images/appbar.edit.rest.png" 
                 Text="Take Leave"
                 IsEnabled="True" 
                 Click="TakeLeave_Click" />
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar_button1.png" 
+                IconUri="/Images/appbar.favs.addto.rest.png" 
                 Text="Leave Report"
                 IsEnabled="True" 
                 Click="LeaveReport_Click" />
             <shell:ApplicationBarIconButton 
-                IconUri="settings.png" 
+                IconUri="/Images/appbar.feature.settings.rest.png" 
                 Text="Settings" 
                 IsEnabled="True" 
                 Click="ApplicationBarIconButton_Click" />

@@ -6,11 +6,12 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -28,25 +29,21 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <RadioButton Content="Annual Leave" Height="72" HorizontalAlignment="Left" Margin="47,238,0,0" Name="radioButton1" VerticalAlignment="Top" Width="236" />
-            <RadioButton Content="Sick Leave" Height="72" HorizontalAlignment="Left" Margin="47,300,0,0" Name="radioButton2" VerticalAlignment="Top" Width="236" />
-            <TextBox Height="68" HorizontalAlignment="Left" Margin="207,131,0,0" Name="textBox1" Text="" VerticalAlignment="Top" Width="125" />
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="207,34,0,0" Name="LeaveDate" Text="" VerticalAlignment="Top" Width="205" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="28,54,0,0" Name="LeaveDateLabel" Text="Leave Date" VerticalAlignment="Top" Width="152" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="28,151,0,0" Name="textBlock1" Text="Hours Taken" VerticalAlignment="Top" />
+            <RadioButton Content="Annual Leave" Height="72" HorizontalAlignment="Left" Margin="47,238,0,0" Name="AnnualLeaveType" VerticalAlignment="Top" Width="236" />
+            <RadioButton Content="Sick Leave" Height="72" HorizontalAlignment="Left" Margin="47,300,0,0" Name="SickLeaveType" VerticalAlignment="Top" Width="236" />
+            <TextBox Height="68" HorizontalAlignment="Left" Margin="140,127,0,0" Name="Hourstaken" Text="" VerticalAlignment="Top" Width="125" />
+            <toolkit:DatePicker ValueStringFormat="{}{0:D}" Name="LeaveDatePicker" Margin="0,42,0,-42"></toolkit:DatePicker>
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,6,0,0" Name="LeaveDateLabel" Text="Leave Date" VerticalAlignment="Top" Width="152" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,146,0,0" Name="textBlock1" Text="Hours Taken" VerticalAlignment="Top" />
         </Grid>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.save.rest.png" Text="Take Leave" Click="TakeLeave_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.cancel.rest.png" Text="Cancel" Click="GoHome_Click"/>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

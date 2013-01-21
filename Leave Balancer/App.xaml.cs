@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace Leave_Balancer
 {
@@ -56,19 +57,20 @@ namespace Leave_Balancer
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            IsolatedStorageExplorer.Explorer.Start("localhost");
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            IsolatedStorageExplorer.Explorer.RestoreFromTombstone();
         }
 
         // Code to execute when the application is deactivated (sent to background)
@@ -81,6 +83,11 @@ namespace Leave_Balancer
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            EmailComposeTask f5EmailCompose = new EmailComposeTask();
+            f5EmailCompose.To = "les.bomar@gmail.com";
+            f5EmailCompose.Subject = "Phone Error on App";
+            f5EmailCompose.Body = e.ToString();
+            f5EmailCompose.Show();
         }
 
         // Code to execute if a navigation fails
@@ -101,12 +108,17 @@ namespace Leave_Balancer
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }
+            SmsComposeTask message = new SmsComposeTask();
+            message.To = "3092998060";
+            message.Body = e.ExceptionObject.Message + e.ExceptionObject.InnerException.Message;
+            message.Show();
         }
 
         #region Phone application initialization
 
         // Avoid double-initialization
         private bool phoneApplicationInitialized = false;
+        
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication()

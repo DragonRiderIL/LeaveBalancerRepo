@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Leave_Balancer
 {
-    public static class PayPeriodUtilities
+    public class PayPeriodUtilities
     {
         const string seedDate = "01/01/2012";
 
@@ -32,11 +25,21 @@ namespace Leave_Balancer
             }
         }
 
+        public static DateTime GetPayPeriodEndDate(DateTime current)
+        {
+            return current.AddDays(13);
+        }
+
+        public static DateTime GetNextPayPeriod(DateTime current)
+        {
+            return current.AddDays(14);
+        }
+
         public static Basis GetBaseValues()
         {
             using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                Basis baseValues= new Basis();
+                Basis baseValues = new Basis();
 
                 XElement _xml;
                 IsolatedStorageFileStream location = new IsolatedStorageFileStream(@"LeaveSettings.xml", System.IO.FileMode.Open, storage);
@@ -66,32 +69,80 @@ namespace Leave_Balancer
 
         public static void SaveLeave(LeaveEntry entry)
         {
+            Collection<LeaveEntry> currentEntries = new Collection<LeaveEntry>();
+
+            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+
+            if (storage.FileExists("LeaveRecords.xml"))
+            {
+                currentEntries = GetCurrentLeaveEntries();
+            }
+
+            currentEntries.Add(entry);
+
+            IsolatedStorageFileStream location = new IsolatedStorageFileStream("LeaveRecords.xml", FileMode.OpenOrCreate, storage);
+            XmlSerializer serializer = new XmlSerializer(typeof(Collection<LeaveEntry>));
+
+            StreamWriter file = new StreamWriter(location);
+            serializer.Serialize(file, currentEntries);
+
+            file.Dispose();
+            location.Dispose();
+        }
+
+        public static Collection<LeaveEntry> GetCurrentLeaveEntries()
+        {
+            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+
+            if (storage.FileExists("LeaveRecords.xml"))
+            {
+                IsolatedStorageFileStream location = new IsolatedStorageFileStream("LeaveRecords.xml", System.IO.FileMode.Open, storage);
+                System.IO.StreamReader file = new System.IO.StreamReader(location);
+                XmlSerializer serializer = new XmlSerializer(typeof(Collection<LeaveEntry>));
+
+                Collection<LeaveEntry> entries = (Collection<LeaveEntry>)serializer.Deserialize(file);
+
+                file.Dispose();
+                location.Dispose();
+
+                return entries;
+            }
+            else
+            {
+                return new Collection<LeaveEntry>();
+            }
+        }
+
+        public static UsedLeave GetUsedLeaveBalances()
+        {
             IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
 
             if (!storage.FileExists("LeaveRecords.xml"))
             {
-                CreateLeaveFile();
+                return new UsedLeave();
             }
 
-            XElement _xml;
-            IsolatedStorageFileStream location = new IsolatedStorageFileStream(@"LeaveSettings.xml", System.IO.FileMode.Open, storage);
-            System.IO.StreamReader file = new System.IO.StreamReader(location);
-            _xml = XElement.Parse(file.ReadToEnd());
-        }
+            //IsolatedStorageFileStream location = new IsolatedStorageFileStream("LeaveRecords.xml", System.IO.FileMode.Open, storage);
+            //System.IO.StreamReader file = new System.IO.StreamReader(location);
+            //XmlSerializer serializer = new XmlSerializer(typeof(Collection<LeaveEntry>));
 
-        public static void CreateLeaveFile()
-        {
-            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            Collection<LeaveEntry> entries = GetCurrentLeaveEntries();
+
+            UsedLeave balances = new UsedLeave();
+
+            foreach (LeaveEntry item in entries)
             {
-                XDocument _doc = new XDocument();
-                XElement baseSetting = new XElement("LeaveEntries");
-                _doc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), baseSetting);
-                IsolatedStorageFileStream location = new IsolatedStorageFileStream("LeaveRecords.xml", FileMode.Create, storage);
-                StreamWriter file = new StreamWriter(location);
-                _doc.Save(file);
-                file.Dispose();
-                location.Dispose();
+                if (item.Type == LeaveType.Annual)
+                {
+                    balances.Annual += item.LeaveHours;
+                }
+                else
+                {
+                    balances.Sick += item.LeaveHours;
+                }
             }
+
+            return balances;
         }
     }
 }

@@ -48,8 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IsolatedStorageExplorer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -57,6 +61,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -79,6 +84,7 @@
     <Compile Include="TakeLeavePage.xaml.cs">
       <DependentUpon>TakeLeavePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsedLeave.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -107,30 +113,44 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="settings.png" />
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\appbar.add.rest.png" />
-    <Resource Include="Images\appbar.back.rest.png" />
+    <Content Include="SplashScreenImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\appbar.add.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Images\appbar.back.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\appbar.basecircle.rest.png" />
-    <Resource Include="Images\appbar.cancel.rest.png" />
+    <Content Include="Images\appbar.cancel.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\appbar.check.rest.png" />
     <Resource Include="Images\appbar.close.rest.png" />
     <Resource Include="Images\appbar.delete.rest.png" />
     <Resource Include="Images\appbar.download.rest.png" />
-    <Resource Include="Images\appbar.edit.rest.png" />
-    <Resource Include="Images\appbar.favs.addto.rest.png" />
+    <Content Include="Images\appbar.edit.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\appbar.favs.addto.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\appbar.favs.rest.png" />
-    <Resource Include="Images\appbar.feature.camera.rest.png" />
+    <Content Include="Images\appbar.feature.camera.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\appbar.feature.email.rest.png" />
     <Resource Include="Images\appbar.feature.search.rest.png" />
-    <Resource Include="Images\appbar.feature.settings.rest.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Images\appbar.feature.settings.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\appbar.feature.video.rest.png" />
     <Resource Include="Images\appbar.folder.rest.png" />
     <Resource Include="Images\appbar.minus.rest.png" />
@@ -139,7 +159,9 @@
     <Resource Include="Images\appbar.overflowdots.png" />
     <Resource Include="Images\appbar.questionmark.rest.png" />
     <Resource Include="Images\appbar.refresh.rest.png" />
-    <Resource Include="Images\appbar.save.rest.png" />
+    <Content Include="Images\appbar.save.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\appbar.share.rest.png" />
     <Resource Include="Images\appbar.stop.rest.png" />
     <Resource Include="Images\appbar.sync.rest.png" />
@@ -148,7 +170,9 @@
     <Resource Include="Images\appbar.transport.play.rest.png" />
     <Resource Include="Images\appbar.transport.rew.rest.png" />
     <Resource Include="Images\appbar.upload.rest.png" />
-    <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

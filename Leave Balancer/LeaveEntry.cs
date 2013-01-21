@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace Leave_Balancer
 {
@@ -18,5 +9,29 @@ namespace Leave_Balancer
         public double LeaveHours { get; set; }
 
         public LeaveType Type { get; set; }
+
+        public string DateDisplay 
+        {
+            get
+            {
+                return this.LeaveDate.ToLongDateString();
+            }
+        }
+
+        public string HoursDisplay 
+        {
+            get
+            {
+                return this.LeaveHours.ToString();
+            }
+        }
+
+        public string TypeDisplay 
+        {
+            get
+            {
+                return this.Type.ToString();
+            }
+        }
     }
 }
