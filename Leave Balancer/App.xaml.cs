@@ -63,7 +63,7 @@ namespace Leave_Balancer
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            IsolatedStorageExplorer.Explorer.Start("localhost");
+            //IsolatedStorageExplorer.Explorer.Start("localhost");
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -83,16 +83,14 @@ namespace Leave_Balancer
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            EmailComposeTask f5EmailCompose = new EmailComposeTask();
-            f5EmailCompose.To = "les.bomar@gmail.com";
-            f5EmailCompose.Subject = "Phone Error on App";
-            f5EmailCompose.Body = e.ToString();
-            f5EmailCompose.Show();
+            
         }
 
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            LittleWatson.ReportException(e.Exception.InnerException, "Navigation Failed");
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
@@ -103,6 +101,8 @@ namespace Leave_Balancer
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            LittleWatson.ReportException(e.ExceptionObject, "Unhandled Exception");
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger

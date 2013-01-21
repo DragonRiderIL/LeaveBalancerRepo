@@ -28,17 +28,17 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,36,0,0" Name="textBlock1" Text="Pay Period End Date" VerticalAlignment="Top" Width="190" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,92,0,0" Name="textBlock2" Text="Annual Leave Balance" VerticalAlignment="Top" Width="190" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,143,0,0" Name="textBlock3" Text="Sick Leave Balance" VerticalAlignment="Top" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,254,0,0" Name="textBlock4" Text="Annual Leave Acrual" VerticalAlignment="Top" Width="190" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,0,0,305" Name="textBlock5" Text="Sick Leave Acrual" VerticalAlignment="Bottom" Width="190" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,36,0,0" Name="textBlock1" Text="Pay Period End Date" VerticalAlignment="Top" Width="234" FontSize="24" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,92,0,0" Name="textBlock2" Text="Annual Leave Balance" VerticalAlignment="Top" Width="234" FontSize="24" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,143,0,0" Name="textBlock3" Text="Sick Leave Balance" VerticalAlignment="Top" FontSize="24" Width="221" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,254,0,0" Name="textBlock4" Text="Annual Leave Acrual" VerticalAlignment="Top" Width="221" FontSize="24" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,0,0,305" Name="textBlock5" Text="Sick Leave Acrual" VerticalAlignment="Bottom" Width="221" FontSize="24" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="252,36,0,0" Name="PayPeriodBase" Text="TextBlock" VerticalAlignment="Top" Width="159" />
             
-            <TextBox Height="61" HorizontalAlignment="Left" Margin="239,125,0,0" Name="SickBalance" Text="" VerticalAlignment="Top" Width="118" FontSize="20" />
-            <TextBox Height="61" HorizontalAlignment="Left" Margin="239,180,0,0" Name="SickAccrue" Text="" VerticalAlignment="Top" Width="118" FontSize="20" />
-            <TextBox Height="61" HorizontalAlignment="Left" Margin="239,0,0,236" Name="AnnualAccrue" Text="" VerticalAlignment="Bottom" Width="118" FontSize="20" />
-            <TextBox FontSize="20" Height="61" HorizontalAlignment="Left" Margin="239,0,0,402" Name="AnnualBalance" Text="" VerticalAlignment="Bottom" Width="118" />
+            <TextBox Height="70" HorizontalAlignment="Left" Margin="239,130,0,0" Name="SickBalance" Text="" VerticalAlignment="Top" Width="187" FontSize="26" />
+            <TextBox Height="71" HorizontalAlignment="Right" Margin="0,185,30,0" Name="SickAccrue" Text="" VerticalAlignment="Top" Width="187" FontSize="26" />
+            <TextBox Height="70" HorizontalAlignment="Right" Margin="0,0,30,225" Name="AnnualAccrue" Text="" VerticalAlignment="Bottom" Width="187" FontSize="26" />
+            <TextBox FontSize="26" Height="71" HorizontalAlignment="Right" Margin="0,0,30,392" Name="AnnualBalance" Text="" VerticalAlignment="Bottom" Width="187" />
         </Grid>
     </Grid>
  

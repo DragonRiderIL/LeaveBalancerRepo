@@ -28,9 +28,12 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
-            <TextBlock Text="Annual Leave" Margin="9,15,-9,-15" /><TextBox Height="72" HorizontalAlignment="Left" Margin="40,37,0,0" Name="CurrentAnnualBalance" VerticalAlignment="Top" Width="300" />
-            <TextBlock Text="Sick Leave" Margin="12,137,-12,-137" /><TextBox Height="72" HorizontalAlignment="Left" Margin="40,159,0,0" Name="CurrentSickBalance" VerticalAlignment="Top" Width="300" />
-            <TextBlock Height="63" HorizontalAlignment="Left" Margin="55,420,0,0" Name="CurrentPayPeriod" Text="TextBlock" VerticalAlignment="Top" Width="367" />
+            <TextBlock Text="Annual Leave" Margin="9,15,236,475" FontSize="32" />
+            <TextBlock  Height="38" HorizontalAlignment="Right" Margin="0,66,211,0" Name="CurrentAnnualBalance" VerticalAlignment="Top" Width="141" Text="0.0" FontSize="32" Foreground="#FF15EB26" />
+            <TextBlock Text="Sick Leave" Margin="9,117,283,0" FontSize="32" Height="50" VerticalAlignment="Top" />
+            <TextBlock Height="52" HorizontalAlignment="Right" Margin="0,173,255,0" Name="CurrentSickBalance" VerticalAlignment="Top" Width="97" Text="0.0" Foreground="#FF58EF15" FontSize="32" />
+            <TextBlock Height="63" HorizontalAlignment="Center" Margin="12,453,14,0" Name="CurrentPayPeriod" Text="TextBlock" VerticalAlignment="Top" Width="430" FontSize="32" Foreground="#FF8585D8" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,417,0,0" Name="textBlock1" Text="Current Pay Period Start Date" VerticalAlignment="Top" Width="314" />
         </Grid>
     </Grid>
  

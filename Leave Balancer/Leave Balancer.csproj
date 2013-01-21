@@ -73,6 +73,7 @@
       <DependentUpon>LeaveReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LeaveType.cs" />
+    <Compile Include="LittleWatson.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

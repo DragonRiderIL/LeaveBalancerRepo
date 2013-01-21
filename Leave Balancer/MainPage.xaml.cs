@@ -1,12 +1,19 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
+using Microsoft.Phone.Controls;
 
 namespace Leave_Balancer
 {
-    using System;
-    using System.Windows;
-    using Microsoft.Phone.Controls;
-
-    public partial class MainPage : PhoneApplicationPage
+   public partial class MainPage : PhoneApplicationPage
     {
 
         // Constructor
@@ -18,11 +25,13 @@ namespace Leave_Balancer
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            LittleWatson.CheckForPreviousException();
+
             System.IO.IsolatedStorage.IsolatedStorageFile file = System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
 
             if (!file.FileExists("LeaveSettings.xml"))
             {
-                //NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             }
             else
             {
@@ -45,8 +54,8 @@ namespace Leave_Balancer
 
             UsedLeave used = PayPeriodUtilities.GetUsedLeaveBalances();
 
-            this.CurrentAnnualBalance.Text = (values.StartingAnnual + (values.AnnualAccrue * multiplier) - used.Annual).ToString();
-            this.CurrentSickBalance.Text = (values.StartingSick + (values.SickAccrue * multiplier) - used.Sick).ToString();
+            this.CurrentAnnualBalance.Text = ((values.StartingAnnual + (values.AnnualAccrue * multiplier)) - used.Annual).ToString();
+            this.CurrentSickBalance.Text = ((values.StartingSick + (values.SickAccrue * multiplier)) - used.Sick).ToString();
         }
 
         private void TakeLeave_Click(object sender, EventArgs e)
